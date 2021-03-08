@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { Button, Card, Checkbox, Col, Form, Input, Modal, Row, message } from 'antd'
 import { getMobileCaptcha, login } from '../../utils/api'
 import { captchaRegExp, mobileRegExp, passwordRegExp } from '../../common/contants/regExp'
-import { registerLocales as locales } from '../../locales/zh-CN/component'
+import { locales } from '../../locales/zh-CN'
 
 const formItemLayout = {
   wrapperCol: {
