@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Button } from 'antd'
+import AddCount from '../../components/home/AddCount'
+import Sub from '../../components/home/Sub'
 
 class Home extends Component {
   render() {
@@ -12,6 +14,8 @@ class Home extends Component {
         <Link to="/register">
           <Button type="primary">SignUp</Button>
         </Link>
+        <AddCount />
+        <Sub />
       </Row>
     )
   }

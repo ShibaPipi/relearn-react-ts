@@ -57,7 +57,7 @@ const RegForm: FC = () => {
   const history = useHistory()
   const [form] = Form.useForm()
 
-  const captchaInterval: () => void = () => {
+  const captchaInterval = (): void => {
     if (1 === captchaSecond) {
       setCaptchaSecond(60)
       setCaptchaBtnDisabled(false)
@@ -68,7 +68,7 @@ const RegForm: FC = () => {
     }
   }
 
-  const getCaptcha: () => void = async () => {
+  const getCaptcha = async (): Promise<void> => {
     const { code, data } = await getMobileCaptcha()
 
     if (200 === code) {
