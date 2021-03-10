@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { Button, Card, Checkbox, Col, Form, Input, Modal, Row, message } from 'antd'
-import { getMobileCaptcha, login } from '../../utils/api'
+import { getMobileCaptcha, login } from '../../api'
 import { captchaRegExp, mobileRegExp, passwordRegExp } from '../../common/contants/regExp'
 import { locales } from '../../locales/zh-CN'
 
@@ -69,7 +69,7 @@ const RegForm: FC = () => {
   }
 
   const getCaptcha = async (): Promise<void> => {
-    const { code, data } = await getMobileCaptcha()
+    const { data: { code, data } } = await getMobileCaptcha()
 
     if (200 === code) {
       localStorage.setItem('captcha', data)
@@ -83,7 +83,7 @@ const RegForm: FC = () => {
 
   const loginSubmit: () => void = async () => {
     const { mobile } = await form.validateFields()
-    const { code } = await login(mobile)
+    const { data: { code } } = await login(mobile)
 
     if (200 === code) {
       history.push({
