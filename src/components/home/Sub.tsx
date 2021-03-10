@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
     dispatch(decrCount())
   },
   subCount: (num: number): void => {
-    dispatch(subCount<number>(num))
+    dispatch(subCount(num))
   },
   changeMobileCaptcha: (): void => {
     dispatch(changeMobileCaptchaAction)

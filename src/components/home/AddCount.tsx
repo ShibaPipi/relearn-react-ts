@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(incrCount())
   },
   addCount: (num: number): void => {
-    dispatch(addCount<number>(num))
+    dispatch(addCount(num))
   }
 })
 
