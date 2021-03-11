@@ -1,7 +1,9 @@
+import { RouteConfig } from 'react-router-config'
+
 import Home from '../pages/home'
 import Register from '../pages/register'
 
-const routes = [{
+const routes: RouteConfig[] = [{
   path: '/',
   exact: true,
   component: Home
