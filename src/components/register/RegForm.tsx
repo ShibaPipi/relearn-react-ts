@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import { Button, Card, Checkbox, Col, Form, Input, Modal, Row, message } from 'antd'
+import { Button, Card, Checkbox, Col, Form, Input, Modal, Row } from 'antd'
 import { getMobileCaptcha, login } from '../../api'
 import { captchaRegExp, mobileRegExp, passwordRegExp } from '../../common/contants/regExp'
 import { locales } from '../../locales/zh-CN'
@@ -58,6 +58,7 @@ const RegForm: FC = () => {
   const [form] = Form.useForm()
 
   const captchaInterval = (): void => {
+    console.log('interval')
     if (1 === captchaSecond) {
       setCaptchaSecond(60)
       setCaptchaBtnDisabled(false)
@@ -69,16 +70,11 @@ const RegForm: FC = () => {
   }
 
   const getCaptcha = async (): Promise<void> => {
-    const { data: { code, data } } = await getMobileCaptcha()
+    const { args: { captcha } } = await getMobileCaptcha()
+    localStorage.setItem('captcha', captcha)
+    setCaptchaBtnDisabled(true)
 
-    if (200 === code) {
-      localStorage.setItem('captcha', data)
-      setCaptchaBtnDisabled(true)
-
-      captchaInterval()
-    } else {
-      message.error(locales.getCaptchaFailed)
-    }
+    captchaInterval()
   }
 
   const loginSubmit: () => void = async () => {
