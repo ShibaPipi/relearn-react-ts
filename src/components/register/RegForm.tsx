@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import React, { FC, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { Button, Card, Checkbox, Col, Form, Input, Modal, Row } from 'antd'
 import { getMobileCaptcha, login } from '../../api'
 import { captchaRegExp, mobileRegExp, passwordRegExp } from '../../common/contants/regExp'
@@ -52,29 +52,39 @@ const rules = {
 const RegForm: FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [captchaBtnDisabled, setCaptchaBtnDisabled] = useState<boolean>(false)
-  const [captchaSecond, setCaptchaSecond] = useState<number>(60)
+  const [count, setCount] = useState<number>(0)
 
   const history = useHistory()
   const [form] = Form.useForm()
 
-  const captchaInterval = (): void => {
-    console.log('interval')
-    if (1 === captchaSecond) {
-      setCaptchaSecond(60)
-      setCaptchaBtnDisabled(false)
-    } else {
-      setCaptchaSecond(captchaSecond - 1)
+  useEffect(() => {
+    let timer: NodeJS.Timeout
 
-      setTimeout(() => captchaInterval(), 1000)
+    if (0 !== count) {
+      timer = setInterval(() => {
+        setCount(prevCount => {
+          if (1 === prevCount) {
+            setCaptchaBtnDisabled(false)
+            clearInterval(timer)
+          }
+
+          return prevCount - 1
+        })
+        console.log(count)
+      }, 1000)
     }
-  }
+
+    return () => {
+      clearInterval(timer)
+    }
+  })
 
   const getCaptcha = async (): Promise<void> => {
     const { args: { captcha } } = await getMobileCaptcha()
     localStorage.setItem('captcha', captcha)
     setCaptchaBtnDisabled(true)
 
-    captchaInterval()
+    setCount(60)
   }
 
   const loginSubmit: () => void = async () => {
@@ -129,7 +139,7 @@ const RegForm: FC = () => {
                 disabled={captchaBtnDisabled}
                 onClick={getCaptcha}
               >
-                {captchaBtnDisabled ? `${captchaSecond} S` : locales.getCaptcha}
+                {captchaBtnDisabled ? `${count} S` : locales.getCaptcha}
               </Button>
             </Col>
           </Row>
