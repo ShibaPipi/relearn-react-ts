@@ -1,0 +1,3 @@
+const rsaPublicKey: string = '-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD68J+Ym4IFS112hRBCaTnICc0mMf6xF+9zI6zwvA0Y5MIBFmll5kapbBJJxIRj5zrHaCEluZCrmvILfJFjAxDiaUE+CY8i57MB0m+e1ee6PiLo3ryNuOhXBpcMbIkgfrN4wdWnHuJ0Jv7RctrVL7aHutZxxD85ZaCtelx1yaSHCQIDAQAB-----END PUBLIC KEY-----'
+
+export default rsaPublicKey
