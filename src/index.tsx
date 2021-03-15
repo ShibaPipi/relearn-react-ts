@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-snapshot'
 import { Provider } from 'react-redux'
 
 import { BrowserRouter } from 'react-router-dom'
@@ -9,7 +9,7 @@ import 'antd/dist/antd.css'
 import App from './App'
 import store from './store'
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <BrowserRouter>
       <App />

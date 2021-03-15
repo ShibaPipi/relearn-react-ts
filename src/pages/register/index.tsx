@@ -9,12 +9,14 @@ import {
   Space
 } from 'antd'
 import RegForm from '../../components/register/RegForm'
+import Helmet from 'react-helmet'
 
 const { Header, Content } = Layout
 
 const Register: FC = () => {
   return (
     <Layout>
+      <Helmet title="Register" />
       <Header className="login-header">
         <Image
           className="logo"

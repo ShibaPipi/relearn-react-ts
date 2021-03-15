@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Button, Input } from 'antd'
+import Helmet from 'react-helmet'
 import { JSEncrypt } from 'jsencrypt'
 
 import AddCount from '../../components/home/AddCount'
@@ -26,19 +27,20 @@ const Home: FC = () => {
 
   return (
     <Row justify="center">
-      <Link to="/login">
-        <Button type="primary">SignIn</Button>
+      <Helmet title="Home" />
+      <Link to="/about">
+        <Button type="primary">about</Button>
       </Link>
       <Link to="/register">
         <Button type="primary">SignUp</Button>
       </Link>
-      <div>
-        <Input value={'abc'} />
-        <Button type="primary" onClick={() => encrypt()}>encrypt it</Button>
-        <Input value={encryptedString} />
-      </div>
-      <AddCount />
-      <Sub />
+      {/*<div>*/}
+      {/*  <Input value={'abc'} />*/}
+      {/*  <Button type="primary" onClick={() => encrypt()}>encrypt it</Button>*/}
+      {/*  <Input value={encryptedString} />*/}
+      {/*</div>*/}
+      {/*<AddCount />*/}
+      {/*<Sub />*/}
     </Row>
   )
 }
