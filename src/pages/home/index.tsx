@@ -6,6 +6,7 @@ import { JSEncrypt } from 'jsencrypt'
 import AddCount from '../../components/home/AddCount'
 import Sub from '../../components/home/Sub'
 import rsaPublicKey from '../../common/contants/rsaPublicKey'
+import Helmet from 'react-helmet'
 
 const Home: FC = () => {
   const [encryptedString, setEncryptedString] = useState<string>('')
@@ -26,11 +27,15 @@ const Home: FC = () => {
 
   return (
     <Row justify="center">
-      <Link to="/login">
-        <Button type="primary">SignIn</Button>
+      <Helmet title="Home" />
+      <Link to="/about">
+        <Button type="primary">About</Button>
+      </Link>
+      <Link to="/asasas">
+        <Button type="primary">no-match</Button>
       </Link>
       <Link to="/register">
-        <Button type="primary">SignUp</Button>
+        <Button type="primary">Reg</Button>
       </Link>
       <div>
         <Input value={'abc'} />
